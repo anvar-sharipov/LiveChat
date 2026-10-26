@@ -1,0 +1,22 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <SolidColorBrush x:Key="BgBrush"          Color="#12141A"/>
+    <SolidColorBrush x:Key="SurfaceBrush"     Color="#191C23"/>
+    <SolidColorBrush x:Key="Surface2Brush"    Color="#20242D"/>
+    <SolidColorBrush x:Key="BorderBrush2"     Color="#2A2F3A"/>
+    <SolidColorBrush x:Key="TextBrush"        Color="#E8EBF0"/>
+    <SolidColorBrush x:Key="TextDimBrush"     Color="#8D96A8"/>
+    <SolidColorBrush x:Key="AccentBrush"      Color="#4C8DFF"/>
+    <SolidColorBrush x:Key="AccentHoverBrush" Color="#6AA1FF"/>
+    <SolidColorBrush x:Key="AccentDownBrush"  Color="#3B74D9"/>
+    <SolidColorBrush x:Key="BubbleMineBrush"  Color="#2F6BD8"/>
+    <SolidColorBrush x:Key="BubbleOtherBrush" Color="#232833"/>
+    <SolidColorBrush x:Key="DangerBrush"      Color="#E05260"/>
+    <SolidColorBrush x:Key="OnlineBrush"      Color="#3DD68C"/>
+
+    <SolidColorBrush x:Key="ChipOverlayBrush"  Color="#20FFFFFF"/>
+    <SolidColorBrush x:Key="ScrollThumbBrush"  Color="#39404E"/>
+    <SolidColorBrush x:Key="SelectedTintBrush" Color="#1C2740"/>
+
+</ResourceDictionary>

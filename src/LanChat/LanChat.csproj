@@ -1,0 +1,58 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms> <!-- для значка в системном трее (NotifyIcon) -->
+    <AssemblyName>LanChat</AssemblyName>
+    <RootNamespace>LanChat</RootNamespace>
+    <Version>1.0.0</Version>
+    <Product>LAN Chat</Product>
+    <ApplicationIcon>Assets\Icon\app.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <!--
+    Самодостаточный .exe собирается флагами publish (см. publish.ps1), а не здесь:
+    SelfContained в csproj ломает обычный build и ссылки из других проектов.
+  -->
+  <PropertyGroup>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+    <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="10.0.14" />
+  </ItemGroup>
+
+  <!--
+    UseWPF и UseWindowsForms вместе добавляют неявные global using на System.Windows.Forms
+    и System.Drawing, которые конфликтуют с типами WPF (Application, KeyEventArgs и т. п.).
+    Убираем их — TrayIcon.cs, которому они нужны, подключает оба явно сам.
+  -->
+  <ItemGroup>
+    <Using Remove="System.Windows.Forms" />
+    <Using Remove="System.Drawing" />
+  </ItemGroup>
+
+  <!--
+    Звуки — обычные .NET embedded resource (а не WPF Resource/pack://application):
+    MediaPlayer такие пакеты открывать не умеет (NotSupportedException), только
+    pack://siteoforigin или настоящий файл. SoundPlayer распаковывает их во временный
+    файл при старте и открывает оттуда — поэтому всё равно работает на любом компьютере.
+  -->
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\Sounds\sent.mp3" />
+    <EmbeddedResource Include="Assets\Sounds\received.mp3" />
+  </ItemGroup>
+
+  <!-- Иконка (ещё и для трея) и фото автора в "О программе" — тем же способом, что звуки. -->
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\Icon\app.ico" />
+    <EmbeddedResource Include="Assets\About\author-square.jpg" />
+  </ItemGroup>
+
+</Project>
